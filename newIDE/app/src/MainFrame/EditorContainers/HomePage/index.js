@@ -262,7 +262,10 @@ export const HomePage = React.memo<Props>(
         onGameUpdated,
       } = useGamesList();
       const openedGame = React.useMemo(
-        () => (games && games.find(game => game.id === openedGameId)) || null,
+        () =>
+          !openedGameId || !games
+            ? null
+            : games.find(game => game.id === openedGameId),
         [games, openedGameId]
       );
       const {
